@@ -1,0 +1,346 @@
+2025-02-28 07:20:43,090 [INFO] Namespace(num_workers=4, data_dir='E:\\BaiduNetdiskDownload\\hyjj_signal_demod\\train_data', train_ratio=0.999, sample_len=2000, flip_rate=0.5, lr=0.001, weight_decay=1e-05, use_scheduler=True, epoch_count=100, val_per_epoch=1, batch_size=64, device='cuda', seed=114514, output_dir='./output_v7')
+2025-02-28 07:20:43,653 [INFO] TRAIN DATA COUNT: 179813, VAL DATA COUNT: 180
+2025-02-28 07:20:45,082 [INFO] MODEL AMR: BiLSTMModel2AMR(
+  (feature_extractor): CNNFeatureExtractor(
+    (conv1): Conv1d(2, 16, kernel_size=(3,), stride=(1,), padding=(1,))
+    (bn1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (layers): ModuleList(
+      (0): ResidualBlock(
+        (conv1): Conv1d(16, 32, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv1d(32, 32, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn2): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv1d(16, 32, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): ResidualBlock(
+        (conv1): Conv1d(32, 64, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv1d(64, 64, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv1d(32, 64, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (2): ResidualBlock(
+        (conv1): Conv1d(64, 128, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv1d(128, 128, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn2): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv1d(64, 128, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (pool): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (dropout): Sequential(
+      (0): Dropout(p=0.1, inplace=False)
+      (1): Conv1d(128, 128, kernel_size=(1,), stride=(1,))
+    )
+  )
+  (lstm_amr): LSTM(128, 128, batch_first=True, bidirectional=True)
+  (attention_amr): Attention(
+    (attn): Linear(in_features=256, out_features=1, bias=True)
+  )
+  (fc_amr): Linear(in_features=256, out_features=10, bias=True)
+)
+2025-02-28 07:20:45,084 [INFO] MODEL CW: BiLSTMModel2CW(
+  (feature_extractor): CNNFeatureExtractor(
+    (conv1): Conv1d(2, 16, kernel_size=(3,), stride=(1,), padding=(1,))
+    (bn1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (layers): ModuleList(
+      (0): ResidualBlock(
+        (conv1): Conv1d(16, 32, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv1d(32, 32, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn2): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv1d(16, 32, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): ResidualBlock(
+        (conv1): Conv1d(32, 64, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv1d(64, 64, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv1d(32, 64, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (2): ResidualBlock(
+        (conv1): Conv1d(64, 128, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv1d(128, 128, kernel_size=(3,), stride=(1,), padding=(1,))
+        (bn2): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv1d(64, 128, kernel_size=(1,), stride=(1,))
+          (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (pool): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (dropout): Sequential(
+      (0): Dropout(p=0.1, inplace=False)
+      (1): Conv1d(128, 128, kernel_size=(1,), stride=(1,))
+    )
+  )
+  (lstm_cw): LSTM(128, 128, batch_first=True, bidirectional=True)
+  (attention_cw): Attention(
+    (attn): Linear(in_features=256, out_features=1, bias=True)
+  )
+  (fc_cw): Linear(in_features=256, out_features=1, bias=True)
+)
+2025-02-28 07:20:45,084 [INFO] OPTIMIZER AMR: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: False
+    lr: 0.001
+    maximize: False
+    weight_decay: 1e-05
+), SCHEDULER AMR: <torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x000001D698DAED70>
+2025-02-28 07:20:45,084 [INFO] OPTIMIZER CW: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: False
+    lr: 0.001
+    maximize: False
+    weight_decay: 1e-05
+), SCHEDULER CW: <torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x000001D698DAEE60>
+2025-02-28 07:20:45,084 [INFO] LOSS FUNC: CrossEntropyLoss(), L1Loss()
+2025-02-28 07:24:23,205 [INFO] Validation Loss AMR: 1.1475, Validation Accuracy: 57.78%, Validation Loss CW: 0.0371, CW Mean: 0.036890992058648
+2025-02-28 07:24:23,225 [INFO] Best Acc AMR Model saved
+2025-02-28 07:24:23,242 [INFO] Best Acc CW Model saved
+2025-02-28 07:24:23,721 [INFO] Train Epoch [1/100], Loss AMR: 1.4604, Loss CW: 0.0636, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:28:05,947 [INFO] Validation Loss AMR: 1.0505, Validation Accuracy: 61.11%, Validation Loss CW: 0.0350, CW Mean: 0.035312063694000244
+2025-02-28 07:28:05,971 [INFO] Best Acc AMR Model saved
+2025-02-28 07:28:05,991 [INFO] Best Acc CW Model saved
+2025-02-28 07:28:06,560 [INFO] Train Epoch [2/100], Loss AMR: 1.2282, Loss CW: 0.0359, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:31:50,702 [INFO] Validation Loss AMR: 1.0308, Validation Accuracy: 57.22%, Validation Loss CW: 0.0307, CW Mean: 0.03081557995743222
+2025-02-28 07:31:50,721 [INFO] Best Acc CW Model saved
+2025-02-28 07:31:51,289 [INFO] Train Epoch [3/100], Loss AMR: 1.1527, Loss CW: 0.0332, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:35:37,941 [INFO] Validation Loss AMR: 0.9615, Validation Accuracy: 62.78%, Validation Loss CW: 0.0285, CW Mean: 0.028829188611772326
+2025-02-28 07:35:37,962 [INFO] Best Acc AMR Model saved
+2025-02-28 07:35:37,981 [INFO] Best Acc CW Model saved
+2025-02-28 07:35:38,593 [INFO] Train Epoch [4/100], Loss AMR: 1.1032, Loss CW: 0.0319, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:39:18,050 [INFO] Validation Loss AMR: 0.9149, Validation Accuracy: 64.44%, Validation Loss CW: 0.0284, CW Mean: 0.02856862054930793
+2025-02-28 07:39:18,068 [INFO] Best Acc AMR Model saved
+2025-02-28 07:39:18,087 [INFO] Best Acc CW Model saved
+2025-02-28 07:39:18,551 [INFO] Train Epoch [5/100], Loss AMR: 1.0710, Loss CW: 0.0311, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:43:05,122 [INFO] Validation Loss AMR: 0.8797, Validation Accuracy: 68.89%, Validation Loss CW: 0.0332, CW Mean: 0.03355886674589581
+2025-02-28 07:43:05,145 [INFO] Best Acc AMR Model saved
+2025-02-28 07:43:05,696 [INFO] Train Epoch [6/100], Loss AMR: 1.0421, Loss CW: 0.0304, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:46:49,350 [INFO] Validation Loss AMR: 0.8669, Validation Accuracy: 63.89%, Validation Loss CW: 0.0282, CW Mean: 0.02814112605320083
+2025-02-28 07:46:49,371 [INFO] Best Acc CW Model saved
+2025-02-28 07:46:49,962 [INFO] Train Epoch [7/100], Loss AMR: 1.0183, Loss CW: 0.0299, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:50:30,846 [INFO] Validation Loss AMR: 0.8884, Validation Accuracy: 66.11%, Validation Loss CW: 0.0274, CW Mean: 0.027410278022289278
+2025-02-28 07:50:30,866 [INFO] Best Acc CW Model saved
+2025-02-28 07:50:31,359 [INFO] Train Epoch [8/100], Loss AMR: 1.0011, Loss CW: 0.0297, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:54:16,866 [INFO] Validation Loss AMR: 0.8226, Validation Accuracy: 70.56%, Validation Loss CW: 0.0258, CW Mean: 0.02565368193719123
+2025-02-28 07:54:16,886 [INFO] Best Acc AMR Model saved
+2025-02-28 07:54:16,910 [INFO] Best Acc CW Model saved
+2025-02-28 07:54:17,500 [INFO] Train Epoch [9/100], Loss AMR: 0.9829, Loss CW: 0.0292, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 07:57:56,376 [INFO] Validation Loss AMR: 0.8406, Validation Accuracy: 68.33%, Validation Loss CW: 0.0255, CW Mean: 0.025702619751294457
+2025-02-28 07:57:56,875 [INFO] Train Epoch [10/100], Loss AMR: 0.9699, Loss CW: 0.0286, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:01:41,030 [INFO] Validation Loss AMR: 0.8379, Validation Accuracy: 64.44%, Validation Loss CW: 0.0264, CW Mean: 0.026498530490530865
+2025-02-28 08:01:41,651 [INFO] Train Epoch [11/100], Loss AMR: 0.9537, Loss CW: 0.0283, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:05:27,485 [INFO] Validation Loss AMR: 0.8098, Validation Accuracy: 68.89%, Validation Loss CW: 0.0261, CW Mean: 0.02615863657659955
+2025-02-28 08:05:28,000 [INFO] Train Epoch [12/100], Loss AMR: 0.9431, Loss CW: 0.0278, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:09:09,736 [INFO] Validation Loss AMR: 0.8281, Validation Accuracy: 68.33%, Validation Loss CW: 0.0270, CW Mean: 0.02734034210443497
+2025-02-28 08:09:10,199 [INFO] Train Epoch [13/100], Loss AMR: 0.9327, Loss CW: 0.0274, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:12:56,980 [INFO] Validation Loss AMR: 0.7993, Validation Accuracy: 68.33%, Validation Loss CW: 0.0233, CW Mean: 0.023544046166870333
+2025-02-28 08:12:57,001 [INFO] Best Acc CW Model saved
+2025-02-28 08:12:57,575 [INFO] Train Epoch [14/100], Loss AMR: 0.9242, Loss CW: 0.0271, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:16:41,395 [INFO] Validation Loss AMR: 0.7801, Validation Accuracy: 70.00%, Validation Loss CW: 0.0260, CW Mean: 0.026269462340407904
+2025-02-28 08:16:41,984 [INFO] Train Epoch [15/100], Loss AMR: 0.9158, Loss CW: 0.0269, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:20:26,764 [INFO] Validation Loss AMR: 0.7616, Validation Accuracy: 73.89%, Validation Loss CW: 0.0259, CW Mean: 0.026092589994271602
+2025-02-28 08:20:26,783 [INFO] Best Acc AMR Model saved
+2025-02-28 08:20:27,257 [INFO] Train Epoch [16/100], Loss AMR: 0.9072, Loss CW: 0.0265, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:24:13,317 [INFO] Validation Loss AMR: 0.7906, Validation Accuracy: 72.22%, Validation Loss CW: 0.0257, CW Mean: 0.025931553824080363
+2025-02-28 08:24:13,925 [INFO] Train Epoch [17/100], Loss AMR: 0.9000, Loss CW: 0.0262, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:27:55,967 [INFO] Validation Loss AMR: 0.8070, Validation Accuracy: 69.44%, Validation Loss CW: 0.0246, CW Mean: 0.024805654701259398
+2025-02-28 08:27:56,459 [INFO] Train Epoch [18/100], Loss AMR: 0.8919, Loss CW: 0.0261, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:31:44,371 [INFO] Validation Loss AMR: 0.7675, Validation Accuracy: 68.89%, Validation Loss CW: 0.0246, CW Mean: 0.024830657160944413
+2025-02-28 08:31:44,884 [INFO] Train Epoch [19/100], Loss AMR: 0.8851, Loss CW: 0.0259, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:35:32,229 [INFO] Validation Loss AMR: 0.7571, Validation Accuracy: 70.56%, Validation Loss CW: 0.0231, CW Mean: 0.023099119232760538
+2025-02-28 08:35:32,249 [INFO] Best Acc CW Model saved
+2025-02-28 08:35:32,839 [INFO] Train Epoch [20/100], Loss AMR: 0.8805, Loss CW: 0.0258, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:39:15,698 [INFO] Validation Loss AMR: 0.7902, Validation Accuracy: 73.33%, Validation Loss CW: 0.0249, CW Mean: 0.025139776335822213
+2025-02-28 08:39:16,188 [INFO] Train Epoch [21/100], Loss AMR: 0.8757, Loss CW: 0.0256, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:43:03,732 [INFO] Validation Loss AMR: 0.7604, Validation Accuracy: 72.22%, Validation Loss CW: 0.0235, CW Mean: 0.023672608269585504
+2025-02-28 08:43:04,391 [INFO] Train Epoch [22/100], Loss AMR: 0.8676, Loss CW: 0.0253, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:47:15,291 [INFO] Validation Loss AMR: 0.7721, Validation Accuracy: 71.67%, Validation Loss CW: 0.0221, CW Mean: 0.022257409890492758
+2025-02-28 08:47:15,313 [INFO] Best Acc CW Model saved
+2025-02-28 08:47:15,951 [INFO] Train Epoch [23/100], Loss AMR: 0.8638, Loss CW: 0.0253, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:51:43,618 [INFO] Validation Loss AMR: 0.7775, Validation Accuracy: 70.00%, Validation Loss CW: 0.0228, CW Mean: 0.023055511977937485
+2025-02-28 08:51:44,231 [INFO] Train Epoch [24/100], Loss AMR: 0.8582, Loss CW: 0.0250, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 08:56:02,818 [INFO] Validation Loss AMR: 0.8695, Validation Accuracy: 65.56%, Validation Loss CW: 0.0247, CW Mean: 0.024866374135017397
+2025-02-28 08:56:03,363 [INFO] Train Epoch [25/100], Loss AMR: 0.8543, Loss CW: 0.0249, LR AMR: 0.001, LR CW: 0.001
+2025-02-28 09:00:14,953 [INFO] Validation Loss AMR: 0.7888, Validation Accuracy: 70.56%, Validation Loss CW: 0.0267, CW Mean: 0.026784545646773447
+2025-02-28 09:00:15,468 [INFO] Train Epoch [26/100], Loss AMR: 0.8494, Loss CW: 0.0247, LR AMR: 0.0001, LR CW: 0.001
+2025-02-28 09:04:25,313 [INFO] Validation Loss AMR: 0.7471, Validation Accuracy: 71.11%, Validation Loss CW: 0.0223, CW Mean: 0.022458230323261684
+2025-02-28 09:04:25,850 [INFO] Train Epoch [27/100], Loss AMR: 0.7893, Loss CW: 0.0247, LR AMR: 0.0001, LR CW: 0.001
+2025-02-28 09:08:32,604 [INFO] Validation Loss AMR: 0.7441, Validation Accuracy: 72.78%, Validation Loss CW: 0.0254, CW Mean: 0.025466208093696173
+2025-02-28 09:08:33,104 [INFO] Train Epoch [28/100], Loss AMR: 0.7726, Loss CW: 0.0244, LR AMR: 0.0001, LR CW: 0.001
+2025-02-28 09:12:38,028 [INFO] Validation Loss AMR: 0.7499, Validation Accuracy: 70.56%, Validation Loss CW: 0.0262, CW Mean: 0.026314604464504458
+2025-02-28 09:12:38,598 [INFO] Train Epoch [29/100], Loss AMR: 0.7665, Loss CW: 0.0244, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:16:45,377 [INFO] Validation Loss AMR: 0.7665, Validation Accuracy: 71.11%, Validation Loss CW: 0.0220, CW Mean: 0.022054972665177457
+2025-02-28 09:16:45,399 [INFO] Best Acc CW Model saved
+2025-02-28 09:16:45,982 [INFO] Train Epoch [30/100], Loss AMR: 0.7598, Loss CW: 0.0222, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:20:50,913 [INFO] Validation Loss AMR: 0.7563, Validation Accuracy: 72.22%, Validation Loss CW: 0.0228, CW Mean: 0.0229539866745472
+2025-02-28 09:20:51,575 [INFO] Train Epoch [31/100], Loss AMR: 0.7557, Loss CW: 0.0217, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:25:00,039 [INFO] Validation Loss AMR: 0.7578, Validation Accuracy: 70.56%, Validation Loss CW: 0.0221, CW Mean: 0.022189011838701037
+2025-02-28 09:25:00,630 [INFO] Train Epoch [32/100], Loss AMR: 0.7520, Loss CW: 0.0216, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:29:10,626 [INFO] Validation Loss AMR: 0.7564, Validation Accuracy: 72.22%, Validation Loss CW: 0.0225, CW Mean: 0.022576651838090687
+2025-02-28 09:29:11,212 [INFO] Train Epoch [33/100], Loss AMR: 0.7469, Loss CW: 0.0214, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:33:23,214 [INFO] Validation Loss AMR: 0.7337, Validation Accuracy: 73.33%, Validation Loss CW: 0.0212, CW Mean: 0.021277904510498047
+2025-02-28 09:33:23,246 [INFO] Best Acc CW Model saved
+2025-02-28 09:33:23,845 [INFO] Train Epoch [34/100], Loss AMR: 0.7455, Loss CW: 0.0213, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:37:36,361 [INFO] Validation Loss AMR: 0.7385, Validation Accuracy: 73.33%, Validation Loss CW: 0.0216, CW Mean: 0.02158943807085355
+2025-02-28 09:37:37,003 [INFO] Train Epoch [35/100], Loss AMR: 0.7423, Loss CW: 0.0212, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:41:52,396 [INFO] Validation Loss AMR: 0.7888, Validation Accuracy: 71.67%, Validation Loss CW: 0.0220, CW Mean: 0.022048772225777308
+2025-02-28 09:41:53,032 [INFO] Train Epoch [36/100], Loss AMR: 0.7395, Loss CW: 0.0211, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:46:08,400 [INFO] Validation Loss AMR: 0.7734, Validation Accuracy: 71.11%, Validation Loss CW: 0.0219, CW Mean: 0.022006543229023616
+2025-02-28 09:46:08,962 [INFO] Train Epoch [37/100], Loss AMR: 0.7367, Loss CW: 0.0210, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:50:23,787 [INFO] Validation Loss AMR: 0.7700, Validation Accuracy: 72.78%, Validation Loss CW: 0.0218, CW Mean: 0.021875733799404568
+2025-02-28 09:50:24,324 [INFO] Train Epoch [38/100], Loss AMR: 0.7341, Loss CW: 0.0210, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:54:38,083 [INFO] Validation Loss AMR: 0.7634, Validation Accuracy: 72.22%, Validation Loss CW: 0.0214, CW Mean: 0.02146557480096817
+2025-02-28 09:54:38,582 [INFO] Train Epoch [39/100], Loss AMR: 0.7317, Loss CW: 0.0208, LR AMR: 0.0001, LR CW: 0.0001
+2025-02-28 09:58:51,611 [INFO] Validation Loss AMR: 0.7692, Validation Accuracy: 72.22%, Validation Loss CW: 0.0218, CW Mean: 0.021812326295508278
+2025-02-28 09:58:52,111 [INFO] Train Epoch [40/100], Loss AMR: 0.7301, Loss CW: 0.0208, LR AMR: 1e-05, LR CW: 1e-05
+2025-02-28 10:03:07,023 [INFO] Validation Loss AMR: 0.7701, Validation Accuracy: 72.22%, Validation Loss CW: 0.0220, CW Mean: 0.021946981764501997
+2025-02-28 10:03:07,573 [INFO] Train Epoch [41/100], Loss AMR: 0.7202, Loss CW: 0.0204, LR AMR: 1e-05, LR CW: 1e-05
+2025-02-28 10:07:20,374 [INFO] Validation Loss AMR: 0.7688, Validation Accuracy: 71.67%, Validation Loss CW: 0.0214, CW Mean: 0.021383453690343432
+2025-02-28 10:07:20,862 [INFO] Train Epoch [42/100], Loss AMR: 0.7191, Loss CW: 0.0204, LR AMR: 1e-05, LR CW: 1e-05
+2025-02-28 10:11:33,013 [INFO] Validation Loss AMR: 0.7657, Validation Accuracy: 72.78%, Validation Loss CW: 0.0220, CW Mean: 0.02198398333456781
+2025-02-28 10:11:33,556 [INFO] Train Epoch [43/100], Loss AMR: 0.7183, Loss CW: 0.0203, LR AMR: 1e-05, LR CW: 1e-05
+2025-02-28 10:15:46,589 [INFO] Validation Loss AMR: 0.7648, Validation Accuracy: 72.78%, Validation Loss CW: 0.0215, CW Mean: 0.021525471210479735
+2025-02-28 10:15:47,084 [INFO] Train Epoch [44/100], Loss AMR: 0.7179, Loss CW: 0.0204, LR AMR: 1e-05, LR CW: 1e-05
+2025-02-28 10:20:01,223 [INFO] Validation Loss AMR: 0.7647, Validation Accuracy: 72.78%, Validation Loss CW: 0.0216, CW Mean: 0.02164877833591567
+2025-02-28 10:20:01,747 [INFO] Train Epoch [45/100], Loss AMR: 0.7174, Loss CW: 0.0203, LR AMR: 1e-05, LR CW: 1e-05
+2025-02-28 10:24:14,976 [INFO] Validation Loss AMR: 0.7635, Validation Accuracy: 72.22%, Validation Loss CW: 0.0219, CW Mean: 0.02191130957669682
+2025-02-28 10:24:15,608 [INFO] Train Epoch [46/100], Loss AMR: 0.7151, Loss CW: 0.0203, LR AMR: 1.0000000000000002e-06, LR CW: 1.0000000000000002e-06
+2025-02-28 10:28:28,388 [INFO] Validation Loss AMR: 0.7731, Validation Accuracy: 72.22%, Validation Loss CW: 0.0218, CW Mean: 0.021896221819851132
+2025-02-28 10:28:28,924 [INFO] Train Epoch [47/100], Loss AMR: 0.7153, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-06, LR CW: 1.0000000000000002e-06
+2025-02-28 10:32:42,214 [INFO] Validation Loss AMR: 0.7641, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021721455819076963
+2025-02-28 10:32:42,779 [INFO] Train Epoch [48/100], Loss AMR: 0.7142, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-06, LR CW: 1.0000000000000002e-06
+2025-02-28 10:36:55,347 [INFO] Validation Loss AMR: 0.7746, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.02179643125997649
+2025-02-28 10:36:55,845 [INFO] Train Epoch [49/100], Loss AMR: 0.7166, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-06, LR CW: 1.0000000000000002e-06
+2025-02-28 10:41:09,881 [INFO] Validation Loss AMR: 0.7719, Validation Accuracy: 73.33%, Validation Loss CW: 0.0220, CW Mean: 0.022050688746902677
+2025-02-28 10:41:10,438 [INFO] Train Epoch [50/100], Loss AMR: 0.7138, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-06, LR CW: 1.0000000000000002e-06
+2025-02-28 10:45:25,340 [INFO] Validation Loss AMR: 0.7681, Validation Accuracy: 73.89%, Validation Loss CW: 0.0217, CW Mean: 0.02172189457548989
+2025-02-28 10:45:25,877 [INFO] Train Epoch [51/100], Loss AMR: 0.7144, Loss CW: 0.0203, LR AMR: 1.0000000000000002e-06, LR CW: 1.0000000000000002e-06
+2025-02-28 10:49:35,846 [INFO] Validation Loss AMR: 0.7659, Validation Accuracy: 73.33%, Validation Loss CW: 0.0214, CW Mean: 0.0214739733768834
+2025-02-28 10:49:36,410 [INFO] Train Epoch [52/100], Loss AMR: 0.7159, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-07, LR CW: 1.0000000000000002e-07
+2025-02-28 10:53:46,550 [INFO] Validation Loss AMR: 0.7677, Validation Accuracy: 72.78%, Validation Loss CW: 0.0216, CW Mean: 0.021642029682795206
+2025-02-28 10:53:47,041 [INFO] Train Epoch [53/100], Loss AMR: 0.7151, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-07, LR CW: 1.0000000000000002e-07
+2025-02-28 10:57:58,738 [INFO] Validation Loss AMR: 0.7644, Validation Accuracy: 72.78%, Validation Loss CW: 0.0217, CW Mean: 0.02177506690224012
+2025-02-28 10:57:59,239 [INFO] Train Epoch [54/100], Loss AMR: 0.7149, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-07, LR CW: 1.0000000000000002e-07
+2025-02-28 11:02:12,351 [INFO] Validation Loss AMR: 0.7644, Validation Accuracy: 72.22%, Validation Loss CW: 0.0218, CW Mean: 0.021778547747267618
+2025-02-28 11:02:12,868 [INFO] Train Epoch [55/100], Loss AMR: 0.7144, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-07, LR CW: 1.0000000000000002e-07
+2025-02-28 11:06:25,492 [INFO] Validation Loss AMR: 0.7661, Validation Accuracy: 73.33%, Validation Loss CW: 0.0218, CW Mean: 0.021805547293689515
+2025-02-28 11:06:26,010 [INFO] Train Epoch [56/100], Loss AMR: 0.7158, Loss CW: 0.0202, LR AMR: 1.0000000000000002e-07, LR CW: 1.0000000000000002e-07
+2025-02-28 11:10:37,740 [INFO] Validation Loss AMR: 0.7702, Validation Accuracy: 72.22%, Validation Loss CW: 0.0217, CW Mean: 0.021692060546742543
+2025-02-28 11:10:38,247 [INFO] Train Epoch [57/100], Loss AMR: 0.7147, Loss CW: 0.0203, LR AMR: 1.0000000000000002e-07, LR CW: 1.0000000000000002e-07
+2025-02-28 11:14:50,493 [INFO] Validation Loss AMR: 0.7753, Validation Accuracy: 73.33%, Validation Loss CW: 0.0216, CW Mean: 0.021666708638270693
+2025-02-28 11:14:51,052 [INFO] Train Epoch [58/100], Loss AMR: 0.7155, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:19:03,728 [INFO] Validation Loss AMR: 0.7650, Validation Accuracy: 72.78%, Validation Loss CW: 0.0214, CW Mean: 0.02140023680196868
+2025-02-28 11:19:04,259 [INFO] Train Epoch [59/100], Loss AMR: 0.7147, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:23:17,532 [INFO] Validation Loss AMR: 0.7600, Validation Accuracy: 72.78%, Validation Loss CW: 0.0215, CW Mean: 0.021553497960170108
+2025-02-28 11:23:18,098 [INFO] Train Epoch [60/100], Loss AMR: 0.7151, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:27:31,862 [INFO] Validation Loss AMR: 0.7750, Validation Accuracy: 73.33%, Validation Loss CW: 0.0216, CW Mean: 0.021671856492757796
+2025-02-28 11:27:32,377 [INFO] Train Epoch [61/100], Loss AMR: 0.7151, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:31:47,522 [INFO] Validation Loss AMR: 0.7736, Validation Accuracy: 73.33%, Validation Loss CW: 0.0219, CW Mean: 0.02190027329656813
+2025-02-28 11:31:48,061 [INFO] Train Epoch [62/100], Loss AMR: 0.7145, Loss CW: 0.0203, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:36:03,637 [INFO] Validation Loss AMR: 0.7634, Validation Accuracy: 72.22%, Validation Loss CW: 0.0220, CW Mean: 0.02203064974811342
+2025-02-28 11:36:04,161 [INFO] Train Epoch [63/100], Loss AMR: 0.7157, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:40:19,777 [INFO] Validation Loss AMR: 0.7606, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021681612647242016
+2025-02-28 11:40:20,273 [INFO] Train Epoch [64/100], Loss AMR: 0.7161, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:44:35,739 [INFO] Validation Loss AMR: 0.7654, Validation Accuracy: 73.89%, Validation Loss CW: 0.0216, CW Mean: 0.021652157439125908
+2025-02-28 11:44:36,321 [INFO] Train Epoch [65/100], Loss AMR: 0.7155, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:48:54,029 [INFO] Validation Loss AMR: 0.7670, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021689806067281298
+2025-02-28 11:48:54,589 [INFO] Train Epoch [66/100], Loss AMR: 0.7141, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:53:11,188 [INFO] Validation Loss AMR: 0.7703, Validation Accuracy: 72.78%, Validation Loss CW: 0.0217, CW Mean: 0.02172690065370666
+2025-02-28 11:53:11,695 [INFO] Train Epoch [67/100], Loss AMR: 0.7156, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 11:57:27,668 [INFO] Validation Loss AMR: 0.7668, Validation Accuracy: 72.22%, Validation Loss CW: 0.0216, CW Mean: 0.02162555600206057
+2025-02-28 11:57:28,194 [INFO] Train Epoch [68/100], Loss AMR: 0.7148, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:01:43,963 [INFO] Validation Loss AMR: 0.7669, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021716837800211372
+2025-02-28 12:01:44,486 [INFO] Train Epoch [69/100], Loss AMR: 0.7151, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:06:01,580 [INFO] Validation Loss AMR: 0.7783, Validation Accuracy: 72.78%, Validation Loss CW: 0.0219, CW Mean: 0.02196955311629507
+2025-02-28 12:06:02,170 [INFO] Train Epoch [70/100], Loss AMR: 0.7154, Loss CW: 0.0203, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:10:18,876 [INFO] Validation Loss AMR: 0.7675, Validation Accuracy: 72.78%, Validation Loss CW: 0.0218, CW Mean: 0.021811631752385034
+2025-02-28 12:10:19,380 [INFO] Train Epoch [71/100], Loss AMR: 0.7151, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:14:35,812 [INFO] Validation Loss AMR: 0.7676, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021752044128047095
+2025-02-28 12:14:36,324 [INFO] Train Epoch [72/100], Loss AMR: 0.7151, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:18:53,004 [INFO] Validation Loss AMR: 0.7637, Validation Accuracy: 73.33%, Validation Loss CW: 0.0216, CW Mean: 0.021622159232695896
+2025-02-28 12:18:53,532 [INFO] Train Epoch [73/100], Loss AMR: 0.7156, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:23:12,020 [INFO] Validation Loss AMR: 0.7742, Validation Accuracy: 73.33%, Validation Loss CW: 0.0220, CW Mean: 0.021998742272456483
+2025-02-28 12:23:12,605 [INFO] Train Epoch [74/100], Loss AMR: 0.7159, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:27:28,743 [INFO] Validation Loss AMR: 0.7684, Validation Accuracy: 73.33%, Validation Loss CW: 0.0218, CW Mean: 0.021848721785677806
+2025-02-28 12:27:29,254 [INFO] Train Epoch [75/100], Loss AMR: 0.7153, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:31:46,603 [INFO] Validation Loss AMR: 0.7704, Validation Accuracy: 72.78%, Validation Loss CW: 0.0216, CW Mean: 0.021653466539250477
+2025-02-28 12:31:47,097 [INFO] Train Epoch [76/100], Loss AMR: 0.7154, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:36:05,160 [INFO] Validation Loss AMR: 0.7722, Validation Accuracy: 72.78%, Validation Loss CW: 0.0218, CW Mean: 0.02184817615482542
+2025-02-28 12:36:05,647 [INFO] Train Epoch [77/100], Loss AMR: 0.7150, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:40:18,326 [INFO] Validation Loss AMR: 0.7699, Validation Accuracy: 73.33%, Validation Loss CW: 0.0216, CW Mean: 0.021661576827367145
+2025-02-28 12:40:18,901 [INFO] Train Epoch [78/100], Loss AMR: 0.7158, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:44:30,175 [INFO] Validation Loss AMR: 0.7610, Validation Accuracy: 73.89%, Validation Loss CW: 0.0218, CW Mean: 0.021896643489599226
+2025-02-28 12:44:30,699 [INFO] Train Epoch [79/100], Loss AMR: 0.7153, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:48:42,199 [INFO] Validation Loss AMR: 0.7656, Validation Accuracy: 72.78%, Validation Loss CW: 0.0216, CW Mean: 0.02161421151624785
+2025-02-28 12:48:42,701 [INFO] Train Epoch [80/100], Loss AMR: 0.7145, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:52:54,841 [INFO] Validation Loss AMR: 0.7617, Validation Accuracy: 72.78%, Validation Loss CW: 0.0218, CW Mean: 0.021854975985156164
+2025-02-28 12:52:55,377 [INFO] Train Epoch [81/100], Loss AMR: 0.7154, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 12:57:08,647 [INFO] Validation Loss AMR: 0.7676, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021699959685405095
+2025-02-28 12:57:09,207 [INFO] Train Epoch [82/100], Loss AMR: 0.7161, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:01:21,407 [INFO] Validation Loss AMR: 0.7626, Validation Accuracy: 72.78%, Validation Loss CW: 0.0219, CW Mean: 0.021903508040640087
+2025-02-28 13:01:21,910 [INFO] Train Epoch [83/100], Loss AMR: 0.7164, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:05:32,048 [INFO] Validation Loss AMR: 0.7687, Validation Accuracy: 73.33%, Validation Loss CW: 0.0215, CW Mean: 0.0215898201862971
+2025-02-28 13:05:32,603 [INFO] Train Epoch [84/100], Loss AMR: 0.7155, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:09:41,066 [INFO] Validation Loss AMR: 0.7607, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.02172098340259658
+2025-02-28 13:09:41,583 [INFO] Train Epoch [85/100], Loss AMR: 0.7149, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:13:48,785 [INFO] Validation Loss AMR: 0.7643, Validation Accuracy: 72.22%, Validation Loss CW: 0.0217, CW Mean: 0.021763040009472105
+2025-02-28 13:13:49,338 [INFO] Train Epoch [86/100], Loss AMR: 0.7162, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:17:53,698 [INFO] Validation Loss AMR: 0.7678, Validation Accuracy: 72.78%, Validation Loss CW: 0.0216, CW Mean: 0.021677207615640428
+2025-02-28 13:17:54,175 [INFO] Train Epoch [87/100], Loss AMR: 0.7153, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:21:58,478 [INFO] Validation Loss AMR: 0.7726, Validation Accuracy: 73.89%, Validation Loss CW: 0.0218, CW Mean: 0.02181179599629508
+2025-02-28 13:21:58,968 [INFO] Train Epoch [88/100], Loss AMR: 0.7166, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:26:02,417 [INFO] Validation Loss AMR: 0.7669, Validation Accuracy: 72.78%, Validation Loss CW: 0.0217, CW Mean: 0.021765617926915486
+2025-02-28 13:26:03,045 [INFO] Train Epoch [89/100], Loss AMR: 0.7154, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:30:07,471 [INFO] Validation Loss AMR: 0.7666, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021692783882220585
+2025-02-28 13:30:08,127 [INFO] Train Epoch [90/100], Loss AMR: 0.7148, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:34:13,470 [INFO] Validation Loss AMR: 0.7637, Validation Accuracy: 74.44%, Validation Loss CW: 0.0216, CW Mean: 0.02161847838097148
+2025-02-28 13:34:13,507 [INFO] Best Acc AMR Model saved
+2025-02-28 13:34:14,113 [INFO] Train Epoch [91/100], Loss AMR: 0.7166, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:38:21,311 [INFO] Validation Loss AMR: 0.7670, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021742581725120544
+2025-02-28 13:38:21,946 [INFO] Train Epoch [92/100], Loss AMR: 0.7154, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:42:33,580 [INFO] Validation Loss AMR: 0.7653, Validation Accuracy: 72.22%, Validation Loss CW: 0.0219, CW Mean: 0.021973750409152774
+2025-02-28 13:42:34,256 [INFO] Train Epoch [93/100], Loss AMR: 0.7174, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:46:49,048 [INFO] Validation Loss AMR: 0.7620, Validation Accuracy: 72.78%, Validation Loss CW: 0.0219, CW Mean: 0.021937806953986484
+2025-02-28 13:46:49,571 [INFO] Train Epoch [94/100], Loss AMR: 0.7143, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:51:03,789 [INFO] Validation Loss AMR: 0.7659, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.02177878235777219
+2025-02-28 13:51:04,345 [INFO] Train Epoch [95/100], Loss AMR: 0.7152, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:55:17,002 [INFO] Validation Loss AMR: 0.7671, Validation Accuracy: 72.78%, Validation Loss CW: 0.0217, CW Mean: 0.021723045027918282
+2025-02-28 13:55:17,515 [INFO] Train Epoch [96/100], Loss AMR: 0.7142, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 13:59:28,492 [INFO] Validation Loss AMR: 0.7746, Validation Accuracy: 73.33%, Validation Loss CW: 0.0217, CW Mean: 0.021741187142001257
+2025-02-28 13:59:29,036 [INFO] Train Epoch [97/100], Loss AMR: 0.7154, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 14:03:42,674 [INFO] Validation Loss AMR: 0.7637, Validation Accuracy: 73.89%, Validation Loss CW: 0.0217, CW Mean: 0.02169623576932483
+2025-02-28 14:03:43,479 [INFO] Train Epoch [98/100], Loss AMR: 0.7154, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 14:08:05,163 [INFO] Validation Loss AMR: 0.7624, Validation Accuracy: 73.33%, Validation Loss CW: 0.0215, CW Mean: 0.021566728899876278
+2025-02-28 14:08:05,725 [INFO] Train Epoch [99/100], Loss AMR: 0.7139, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
+2025-02-28 14:12:16,822 [INFO] Validation Loss AMR: 0.7601, Validation Accuracy: 73.89%, Validation Loss CW: 0.0218, CW Mean: 0.021772720946205984
+2025-02-28 14:12:17,505 [INFO] Train Epoch [100/100], Loss AMR: 0.7154, Loss CW: 0.0202, LR AMR: 1.0000000000000004e-08, LR CW: 1.0000000000000004e-08
